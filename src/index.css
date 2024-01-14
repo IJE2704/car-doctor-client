@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.btn-hover {
+  padding: 16px 28px;
+  border-radius: 5px;
+  border: 1px solid #ff3811;
+  color: #ff3811;
+  font-size: 18px;
+}
+.btn-hover:hover{
+  background: #ff3811;
+  color: white;
+}
+.footer-paragraph{
+  color: var(--Dark-06, #E8E8E8);
+/* font-family: 'sans-serif'; */
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 26px; /* 162.5% */
+}
