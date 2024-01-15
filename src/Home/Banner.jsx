@@ -8,7 +8,7 @@ import img6 from "../assets/images/banner/6.jpg";
 
 const Banner = () => {
   return (
-    <div className="carousel w-full h-[300px] md:h-[600px] rounded-[10px]">
+    <div className="carousel w-full h-[300px] md:h-[600px] rounded-0 lg:rounded-[10px]">
       <div id="slide1" className="carousel-item relative w-full">
         <img src={img1} className="w-full" />
         <div className="absolute flex justify-center md:justify-start items-center w-full h-full  left-0 bottom-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
@@ -16,7 +16,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
@@ -37,7 +37,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
@@ -58,7 +58,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
@@ -79,7 +79,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
@@ -100,7 +100,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Banner = () => {
             <h1 className="text-2xl lg:text-6xl font-bold">Affordable Price For Car Servicing</h1>
             <p className="text-sm md:text-base">There are many variations of passages of  available, but the majority have suffered alteration in some form</p>
             <div>
-              <button className="button mr-5">Discover more</button>
+              <button className="button mr-2 lg:mr-5">Discover more</button>
               <button className="btn-hover">Latest Project</button>
             </div>
           </div>
