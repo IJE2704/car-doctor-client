@@ -13,6 +13,14 @@
   background: #ff3811;
   color: white;
 }
+.button{
+  padding: 16px 28px;
+  border-radius: 5px;
+  border: 1px solid;
+  color: #fff;
+  font-size: 18px;
+  background: #ff3811;
+}
 .footer-paragraph{
   color: var(--Dark-06, #E8E8E8);
 /* font-family: 'sans-serif'; */
@@ -20,4 +28,17 @@ font-size: 16px;
 font-style: normal;
 font-weight: 400;
 line-height: 26px; /* 162.5% */
+}
+
+
+
+@media screen and (max-width:650px) {
+  .button{
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  .btn-hover{
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
