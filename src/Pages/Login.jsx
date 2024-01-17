@@ -2,6 +2,10 @@ import React from "react";
 import login from "../assets/images/login/login.svg";
 
 const Login = () => {
+  const handleLogin = event =>{
+    event.preventDefault();
+
+  }
   return (
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
@@ -9,7 +13,7 @@ const Login = () => {
           <img src={login} alt="" />
         </div>
         <div className="card shrink-0 w-full h-[80%] max-w-sm shadow-2xl ">
-          <form className="card-body h-full">
+          <form onSubmit={handleLogin} className="card-body h-full">
             <h1 className="text-center text-2xl lg:text-[40px] font-semibold">
               Login
             </h1>
