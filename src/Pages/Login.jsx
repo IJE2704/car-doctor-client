@@ -1,11 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import login from "../assets/images/login/login.svg";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvideer";
 
 const Login = () => {
+  // get signInUser function form AuthProvide
+  const {signInUser} = useContext(AuthContext);
+
+  // this function will get data from form and then login
   const handleLogin = event =>{
     event.preventDefault();
-
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email,password);
+    // after get the email and password call the signInUser function to signIn
+    signInUser(email,password)
+    .then(result =>{
+      const user = result.user;
+      console.log(user);
+    })
+    .catch(error =>{
+      const errorCode = error.code;
+      const errorMessage = error.errorMessage;
+      console.log(errorCode,errorMessage);
+    })
   }
   return (
     <div className="hero min-h-screen">
@@ -26,6 +45,7 @@ const Login = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
+                name="email"
                 required
               />
             </div>
@@ -37,6 +57,7 @@ const Login = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
+                name="password"
                 required
               />
               <label className="label">
