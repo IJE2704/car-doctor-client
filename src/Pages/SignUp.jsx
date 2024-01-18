@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
 import login from "../assets/images/login/login.svg";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Login = () => {
-  const handleLogin = event =>{
+const SignUp = () => {
+  const handleSignUp= event =>{
     event.preventDefault();
-
   }
   return (
     <div className="hero min-h-screen">
@@ -14,10 +13,22 @@ const Login = () => {
           <img src={login} alt="" />
         </div>
         <div className="card shrink-0 w-full h-[80%] max-w-sm shadow-2xl ">
-          <form onSubmit={handleLogin} className="card-body h-full">
+          <form onSubmit={handleSignUp} className="card-body h-full">
             <h1 className="text-center text-2xl lg:text-[40px] font-semibold mb-0 lg:mb-[50px]">
-              Login
+              Sign Up
             </h1>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="name"
+                className="input input-bordered"
+                name='name'
+                required
+              />
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -26,6 +37,7 @@ const Login = () => {
                 type="email"
                 placeholder="email"
                 className="input input-bordered"
+                name='email'
                 required
               />
             </div>
@@ -37,6 +49,7 @@ const Login = () => {
                 type="password"
                 placeholder="password"
                 className="input input-bordered"
+                name='password'
                 required
               />
               <label className="label">
@@ -47,12 +60,12 @@ const Login = () => {
             </div>
             <div className="form-control mt-6">
               <button className="button" type="submit">
-                Login
+                Sign Up
               </button>
             </div>
 
             <div className="text-center mt-4 space-y-4">
-              <p>Or sign in with</p>
+              <p>Or sign up with</p>
               <div className="flex justify-center items-center space-x-4">
                 <div className="relative w-[55px] h-[55px] bg-[#F5F5F8] rounded-full cursor-pointer">
                   <img
@@ -76,7 +89,7 @@ const Login = () => {
                   />
                 </div>
               </div>
-                <p className="text-[#737373]">Create an account? <span className="text-[#FF3811] font-bold"><Link to='/signup'>Sign Up</Link></span></p>
+                <p className="text-[#737373]">Already have an account? <span className="text-[#FF3811] font-bold"><Link  to='/login'>Sign In</Link></span></p>
 
             </div>
           </form>
@@ -86,4 +99,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
