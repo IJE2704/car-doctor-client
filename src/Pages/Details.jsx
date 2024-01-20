@@ -10,8 +10,8 @@ const Details = () => {
   return (
     <div className="my-8">
       <div className="relative ">
-        <img src="https://i.ibb.co/71RKWWQ/checkout.png" alt="" />
-        <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)]">
+        <img  src="https://i.ibb.co/71RKWWQ/checkout.png" alt="" />
+        <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] rounded-xl">
           <div className="flex justify-center items-center h-full">
             <h1 className="text-center text-[#fff] text-xl  lg:text-[45px] font-bold">
               Service Details
