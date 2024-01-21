@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvideer = ({children}) => {
-  const [user,setUser] = useState(null);
+  const [user,setUser] = useState(0);
   const [loading,setLoading] = useState(true);
   const [servicePrice,setServicePrice] = useState(0);
 
@@ -24,6 +24,7 @@ const AuthProvideer = ({children}) => {
 
   //create this function with firebase for logout user
   const logout =()=>{
+    setLoading(true)
     return signOut(auth);
   }
 

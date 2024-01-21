@@ -6,9 +6,12 @@ import search from "../assets/icons/search.png";
 import shoping from "../assets/icons/shoping.png";
 import { AuthContext } from "../Provider/AuthProvideer";
 const Navbar = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout,setUser } = useContext(AuthContext);
   const handleLogout = () => {
-    logout();
+    logout().then(() => {
+      setUser(0);
+      console.log("User logged out successfully");
+    });
   };
   return (
     <div className="navbar bg-base-100">
@@ -59,6 +62,22 @@ const Navbar = () => {
                 Conatct
               </Link>
             </li>
+            {user.email ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="text-lg font-semibold font-sans"
+                >
+                  Logout
+                </button>
+              </li>
+            ) : (
+              <li>
+                <Link to="/login" className="text-lg font-semibold font-sans">
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <div className="w-[80px] h-[27px] flex justify-end md:justify-center items-center">
@@ -96,15 +115,16 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end gap-5">
+      <div className="navbar-end gap-5 hidden lg:flex">
         {user?.email ? (
           <div className="flex justify-center items-center space-x-2">
-            <CgProfile size={27} color="#FF3811"/>
-            <button onClick={handleLogout} className="text-xl font-semibold">Logout</button>
+            <CgProfile size={27} color="#FF3811" />
+            <button onClick={handleLogout} className="text-xl font-semibold">
+              Logout
+            </button>
           </div>
         ) : (
           <li className="list-none text-xl font-semibold ">
-            {" "}
             <Link to="/login">Login</Link>
           </li>
         )}

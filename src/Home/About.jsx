@@ -3,7 +3,7 @@ import person from "../assets/images/about_us/person.jpg";
 import parts from "../assets/images/about_us/parts.jpg";
 const About = () => {
   return (
-    <div className="hero h-[70vh]">
+    <div className="hero mt-10">
       <div className="hero-content flex-col lg:flex-row">
         <div className="lg:w-1/2 h-full flex justify-center items-start">
           <div className="w-full h-full relative">
