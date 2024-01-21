@@ -2,12 +2,15 @@ import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Location from "../Component/Location";
 import { AuthContext } from "../Provider/AuthProvideer";
+import Swal from "sweetalert2";
 
 const CheckOutPage = () => {
   const service = useLoaderData();
   const { _id, title, img } = service;
   const {user,servicePrice} = useContext(AuthContext);
   console.log(user);
+
+  //this function for checkout
   const handleCheckOut = (event)=>{
     event.preventDefault();
     const form = event.target;
@@ -18,16 +21,38 @@ const CheckOutPage = () => {
     const message = form.message.value;
     // console.log(firstName,lastName,phone,email,message);
     const order ={
-      name,
-      date,
-      phone,
-      email,
-      message,
-      _id,
-      title,
-      servicePrice
+      customar_name:name,
+      ServiceDate:date,
+      customer_Number:phone,
+      customar_email:email,
+      customaer_message:message,
+      service_id:_id,
+      service_title:title,
+      service_img:img,
+      service_price:servicePrice
     }
     console.log(order);
+
+    //data send to backend
+    fetch('http://localhost:5000/checkOut',{
+      method:'POST',
+      headers:{
+          'content-type':'application/json'
+      },
+      body:JSON.stringify(order)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if(data.insertedId){
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Successfully CheckOut",
+        });
+      }
+    })
+    form.reset();
     
   }
   return (

@@ -20,6 +20,7 @@ const Login = () => {
       const user = result.user;
       setUser(user);
       console.log(user);
+      form.reset();
     })
     .catch(error =>{
       const errorCode = error.code;

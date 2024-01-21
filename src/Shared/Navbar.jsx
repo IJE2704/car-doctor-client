@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 import logo from "../assets/logo.svg";
 import search from "../assets/icons/search.png";
 import shoping from "../assets/icons/shoping.png";
+import { AuthContext } from "../Provider/AuthProvideer";
 const Navbar = () => {
+  const { user, logout } = useContext(AuthContext);
+  const handleLogout = () => {
+    logout();
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -91,14 +97,17 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-5">
-        <Link className="hidden md:block" to="">
-          {" "}
-          <img src={shoping} alt="" />
-        </Link>
-        <Link className="hidden md:block" to="">
-          {" "}
-          <img src={search} alt="" />
-        </Link>
+        {user?.email ? (
+          <div className="flex justify-center items-center space-x-2">
+            <CgProfile size={27} color="#FF3811"/>
+            <button onClick={handleLogout} className="text-xl font-semibold">Logout</button>
+          </div>
+        ) : (
+          <li className="list-none text-xl font-semibold ">
+            {" "}
+            <Link to="/login">Login</Link>
+          </li>
+        )}
         <Link to="" className="btn-hover hidden md:block">
           Appoinment
         </Link>
