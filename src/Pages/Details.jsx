@@ -1,16 +1,45 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link, useLoaderData } from "react-router-dom";
 import Location from "../Component/Location";
+import { AuthContext } from "../Provider/AuthProvideer";
+import Swal from "sweetalert2";
 // import {detaisImg} from '../assets/images/checkout/checkout.png'
 
 const Details = () => {
   const details = useLoaderData();
+  const { servicePrice, setServicePrice } = useContext(AuthContext);
   const { _id, title, img, price, description } = details;
+  const [getOffer, setGetOffer] = useState(false);
+
+  const updateServicePrice = () => {
+    if (!getOffer) {
+      const newprice = (price * 60) / 100;
+      setServicePrice(newprice);
+      console.log(newprice);
+      console.log(servicePrice);
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Your get the special offer.",
+      });
+      setGetOffer(true)
+    }
+    else{
+      Swal.fire({
+        position:"top",
+        icon: "error",
+        title: "You already get the special offer.",
+      });
+    }
+  };
+  useEffect(() => {
+    setServicePrice(price);
+  }, []);
   return (
     <div className="my-8">
       <div className="relative ">
-        <img  src="https://i.ibb.co/71RKWWQ/checkout.png" alt="" />
+        <img src="https://i.ibb.co/71RKWWQ/checkout.png" alt="" />
         <div className="absolute w-full h-full top-0 left-0 bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0.00)] rounded-xl">
           <div className="flex justify-center items-center h-full">
             <h1 className="text-center text-[#fff] text-xl  lg:text-[45px] font-bold">
@@ -78,18 +107,23 @@ const Details = () => {
                 Save up to <span className="text-[#FF3811]">60% off</span>
               </p>
               <div className="flex justify-center absolute left-[50px] lg:left-[82px] top-[98px]">
-                <button className="px-8 py-4 bg-[#FF3811] rounded-md hover:scale-110">
+                <button
+                  onClick={updateServicePrice}
+                  className="px-8 py-4 bg-[#FF3811] rounded-md hover:scale-110"
+                >
                   Get A Qute
                 </button>
               </div>
             </div>
           </div>
           <h1 className="text-[35px] font-bold mt-[30px]">
-            Price: <span>${price}</span>
+            Price: <span>${servicePrice}</span>
           </h1>
-          <Link to={`/checkout/${_id}`}><button className="py-4 w-full bg-[#FF3811] text-white rounded-lg font-semibold text-[18px] mt-[30px] hover:scale-110">
-            Proceed Checkout
-          </button></Link>
+          <Link to={`/checkout/${_id}`}>
+            <button className="py-4 w-full bg-[#FF3811] text-white rounded-lg font-semibold text-[18px] mt-[30px] hover:scale-110">
+              Proceed Checkout
+            </button>
+          </Link>
         </div>
       </div>
     </div>

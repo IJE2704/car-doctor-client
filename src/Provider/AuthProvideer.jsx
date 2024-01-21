@@ -8,6 +8,7 @@ const auth = getAuth(app);
 const AuthProvideer = ({children}) => {
   const [user,setUser] = useState(null);
   const [loading,setLoading] = useState(true);
+  const [servicePrice,setServicePrice] = useState(0);
 
   // create a funtion to create a user with email and password
   const createUser = (email,password) =>{
@@ -41,6 +42,8 @@ const AuthProvideer = ({children}) => {
     setLoading,
     createUser,
     signInUser,
+    servicePrice,
+    setServicePrice
   }
   return (
     <AuthContext.Provider value={authInfo}>

@@ -1,10 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import Location from "../Component/Location";
+import { AuthContext } from "../Provider/AuthProvideer";
 
 const CheckOutPage = () => {
   const service = useLoaderData();
   const { _id, title, img } = service;
+  const {user,servicePrice} = useContext(AuthContext);
+  console.log(user);
+  const handleCheckOut = (event)=>{
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const date = form.date.value;
+    const phone = form.phoneNumber.value;
+    const email = form.email.value;
+    const message = form.message.value;
+    // console.log(firstName,lastName,phone,email,message);
+    const order ={
+      name,
+      date,
+      phone,
+      email,
+      message,
+      _id,
+      title,
+      servicePrice
+    }
+    console.log(order);
+    
+  }
   return (
     <div>
       <div className="relative ">
@@ -22,24 +47,24 @@ const CheckOutPage = () => {
       </div>
 
       <div className="  bg-[#F3F3F3] rounded-md mt-[30px] lg:mt-[130px] mb-[30px] lg:mb-[130px]" >
-        <form className="w-full p-2 lg:p-[97px] sm:py-5 space-y-2 lg:space-y-5">
+        <form onSubmit={handleCheckOut} className="w-full p-2 lg:p-[97px] sm:py-5 space-y-2 lg:space-y-5">
           <div className=" w-full flex flex-row space-x-2 lg:space-x-5">
             <div className="w-full">
               {" "}
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder="Name"
+                defaultValue={user?.displayName}
                 className="input input-bordered w-full"
-                name="firstName"
+                name="name"
                 required
               />
             </div>
             <div className="w-full">
               <input
-                type="text"
-                placeholder="Last Name"
+                type="date"
                 className="input input-bordered w-full"
-                name="lastName"
+                name="date"
                 required
               />
             </div>
@@ -57,6 +82,7 @@ const CheckOutPage = () => {
             <div className="w-full">
               <input
                 type="email"
+                defaultValue={user?.email}
                 placeholder="Your Email"
                 className="input input-bordered w-full"
                 name="email"
@@ -75,7 +101,7 @@ const CheckOutPage = () => {
             ></textarea>
           </div>
           <div className="form-control mt-6">
-            <button className="w-full py-4 bg-[#FF3811] text-white rounded-lg hover:scale-110">
+            <button type="submit" className="w-full py-4 bg-[#FF3811] text-white rounded-lg hover:scale-110">
               Submit
             </button>
           </div>

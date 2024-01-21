@@ -5,7 +5,7 @@ import { AuthContext } from "../Provider/AuthProvideer";
 
 const Login = () => {
   // get signInUser function form AuthProvide
-  const {signInUser} = useContext(AuthContext);
+  const {signInUser,setUser} = useContext(AuthContext);
 
   // this function will get data from form and then login
   const handleLogin = event =>{
@@ -18,6 +18,7 @@ const Login = () => {
     signInUser(email,password)
     .then(result =>{
       const user = result.user;
+      setUser(user);
       console.log(user);
     })
     .catch(error =>{

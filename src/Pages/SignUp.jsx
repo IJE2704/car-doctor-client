@@ -5,7 +5,7 @@ import { AuthContext } from '../Provider/AuthProvideer';
 
 const SignUp = () => {
   //get create user function from AuthProvider
-  const {createUser} = useContext(AuthContext);
+  const {createUser,setUser} = useContext(AuthContext);
 
   // this function for get the data from form to create a user,
   const handleSignUp= event =>{
@@ -21,6 +21,7 @@ const SignUp = () => {
     createUser(email,password)
     .then(result =>{
       const user = result.user;
+      setUser(user);
       console.log(user);
     })
     .catch(error =>{
