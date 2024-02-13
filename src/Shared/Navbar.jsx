@@ -48,8 +48,8 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link to="" className="text-lg font-semibold font-sans">
-                Blog
+              <Link to="orders" className="text-lg font-semibold font-sans">
+                Orders
               </Link>
             </li>
             <li>
@@ -99,8 +99,8 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to="" className="text-lg font-semibold font-sans">
-              Blog
+            <Link to="orders" className="text-lg font-semibold font-sans">
+              Orders
             </Link>
           </li>
           <li>
