@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import login from "../assets/images/login/login.svg";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvideer";
 
 const Login = () => {
   // get signInUser function form AuthProvide
   const {signInUser,setUser} = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || '/';
 
   // this function will get data from form and then login
   const handleLogin = event =>{
@@ -13,14 +18,15 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email,password);
+ 
     // after get the email and password call the signInUser function to signIn
     signInUser(email,password)
     .then(result =>{
       const user = result.user;
       setUser(user);
-      console.log(user);
+
       form.reset();
+      navigate(from);
     })
     .catch(error =>{
       const errorCode = error.code;

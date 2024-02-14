@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp";
 import CheckOutPage from "../Pages/CheckOutPage";
 import Details from "../Pages/Details";
 import Orders from "../Pages/Orders";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path:'orders',
-        element: <Orders></Orders>
+        element: <PrivateRoute><Orders></Orders></PrivateRoute>
       }
       
     ]
