@@ -1,6 +1,8 @@
 import React, { Children, createContext, useEffect, useState } from 'react';
 import {createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut} from "firebase/auth";
 import app from '../Firebase/firbase.confif';
+import axios from 'axios';
+axios.defaults.withCredentials = true;
 
 export const AuthContext = createContext();
 const auth = getAuth(app);

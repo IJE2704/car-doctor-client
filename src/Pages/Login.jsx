@@ -29,11 +29,16 @@ const Login = () => {
 
       form.reset();
       const loggedUser = {email:email}
-      axios.post('http://localhost:5000/user', loggedUser,{withCredentials:true})
+      axios.post('http://localhost:5000/user', loggedUser)
       .then(res =>{
         console.log(res.data)
+        if(res.data.success){
+          navigate(from);
+        }
+        else{
+          alert("Something is wrong")
+        }
       })
-      navigate(from);
     })
     .catch(error =>{
       const errorCode = error.code;
