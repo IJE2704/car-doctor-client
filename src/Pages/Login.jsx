@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import login from "../assets/images/login/login.svg";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvideer";
+import axios from "axios";
+import { linkWithCredential } from "firebase/auth";
 
 const Login = () => {
   // get signInUser function form AuthProvide
@@ -26,6 +28,11 @@ const Login = () => {
       setUser(user);
 
       form.reset();
+      const loggedUser = {email:email}
+      axios.post('http://localhost:5000/user', loggedUser,{withCredentials:true})
+      .then(res =>{
+        console.log(res.data)
+      })
       navigate(from);
     })
     .catch(error =>{
