@@ -1,44 +1,45 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Location from '../Component/Location';
-import { AuthContext } from '../Provider/AuthProvideer';
-import OrderCart from './OrderCart';
-import Swal from 'sweetalert2';
+import React, { useContext, useEffect, useState } from "react";
+import Location from "../Component/Location";
+import { AuthContext } from "../Provider/AuthProvideer";
+import OrderCart from "./OrderCart";
+import Swal from "sweetalert2";
 
 const Orders = () => {
-  const {user} = useContext(AuthContext);
-  const [orders, setOrders] = useState([])
+  const { user } = useContext(AuthContext);
+  const [orders, setOrders] = useState([]);
   // console.log(user.email);
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`http://localhost:5000/checkOut?customar_email=${user.email}`)
-    .then(res => res.json())
-    .then(data => setOrders(data))
-    .catch(error => console.log(error))
-  },[user?.email])
+      .then((res) => res.json())
+      .then((data) => setOrders(data))
+      .catch((error) => console.log(error));
+  }, [user?.email]);
 
   // this function we create for delete the orders data
-  const handleDelete = id =>{
-    const proceed = window.confirm('Are you sure, you want to delete this order?');
-    if(proceed){
-      fetch(`http://localhost:5000/checkOut/${id}`,{
-        method: 'DELETE'
+  const handleDelete = (id) => {
+    const proceed = window.confirm(
+      "Are you sure, you want to delete this order?"
+    );
+    if (proceed) {
+      fetch(`http://localhost:5000/checkOut/${id}`, {
+        method: "DELETE",
       })
-      .then(res => res.json())
-      .then(data =>{
-        console.log(data)
-        if(data.deletedCount === 1)
-        {
-          // here filters the order without deleted order
-          const remaining = orders.filter(order => order._id !== id);
-          setOrders(remaining);
-          Swal.fire({
-            title: "Deleted!",
-            text: "Succesfully deleted the order",
-            icon: "error"
-          });
-        }
-      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.deletedCount === 1) {
+            // here filters the order without deleted order
+            const remaining = orders.filter((order) => order._id !== id);
+            setOrders(remaining);
+            Swal.fire({
+              title: "Deleted!",
+              text: "Succesfully deleted the order",
+              icon: "error",
+            });
+          }
+        });
     }
-  }
+  };
   return (
     <div>
       <div className="relative ">
@@ -56,25 +57,25 @@ const Orders = () => {
       </div>
 
       <div>
-        {
-          orders.length !== 0 ? (
-            <div className='my-10 space-y-4 w-full'>
-        {
-          orders.map((order) => <OrderCart
-          key={order._id}
-          order={order}
-          handleDelete = {handleDelete}
-          >
-
-          </OrderCart>)
-        }
-      </div>
-          ) : (
-            <div className='h-[20vh] flex justify-center items-center'>
-              <p className='text-xl lg:text-3xl text-black text-bold'>You dont have any orders</p>
-            </div>
-          )
-        }
+        {Array.isArray(orders) && orders.length !== 0 ? (
+          <div className="my-10 space-y-4 w-full">
+            {orders.map((order) => (
+              <OrderCart
+                key={order._id}
+                order={order}
+                handleDelete={handleDelete}
+              ></OrderCart>
+            ))}
+          </div>
+        ) : (
+          <div className="h-[20vh] flex justify-center items-center">
+            <p className="text-xl lg:text-3xl text-black text-bold">
+              {Array.isArray(orders)
+                ? "You don't have any orders"
+                : "Loading..."}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

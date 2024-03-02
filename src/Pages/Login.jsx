@@ -11,7 +11,9 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
+  // console.log(navigate)
+  // console.log(location)
+// console.log(location.state?.from?.pathname)
   const from = location.state?.from?.pathname || '/';
 
   // this function will get data from form and then login

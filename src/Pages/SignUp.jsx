@@ -1,11 +1,16 @@
 import React, { useContext } from 'react';
 import login from "../assets/images/login/login.svg";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvideer';
+import axios from 'axios';
 
 const SignUp = () => {
   //get create user function from AuthProvider
   const {createUser,setUser} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+// console.log(location)
+  const from = location?.state?.from.pathname || '/';
 
   // this function for get the data from form to create a user,
   const handleSignUp= event =>{
@@ -23,6 +28,17 @@ const SignUp = () => {
       const user = result.user;
       setUser(user);
       console.log(user);
+      const loggedUser = {email:email}
+      axios.post('http://localhost:5000/user', loggedUser)
+      .then(res =>{
+        console.log(res.data)
+        if(res.data.success){
+          navigate(from);
+        }
+        else{
+          alert("Something is wrong")
+        }
+      })
       form.reset();
     })
     .catch(error =>{
