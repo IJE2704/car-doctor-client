@@ -27,18 +27,7 @@ const SignUp = () => {
     .then(result =>{
       const user = result.user;
       setUser(user);
-      console.log(user);
-      const loggedUser = {email:email}
-      axios.post('http://localhost:5000/user', loggedUser)
-      .then(res =>{
-        console.log(res.data)
-        if(res.data.success){
-          navigate(from);
-        }
-        else{
-          alert("Something is wrong")
-        }
-      })
+      console.log(user)
       form.reset();
     })
     .catch(error =>{

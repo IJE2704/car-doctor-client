@@ -30,17 +30,17 @@ const Login = () => {
       setUser(user);
 
       form.reset();
-      const loggedUser = {email:email}
-      axios.post('http://localhost:5000/user', loggedUser)
-      .then(res =>{
-        console.log(res.data)
-        if(res.data.success){
-          navigate(from);
-        }
-        else{
-          alert("Something is wrong")
-        }
-      })
+      // const loggedUser = {email:email}
+      // axios.post('http://localhost:5000/user', loggedUser,{withCredentials:true})
+      // .then(res =>{
+      //   console.log(res.data)
+      //   if(res.data.success){
+      //     navigate(from);
+      //   }
+      //   else{
+      //     alert("Something is wrong")
+      //   }
+      // })
     })
     .catch(error =>{
       const errorCode = error.code;

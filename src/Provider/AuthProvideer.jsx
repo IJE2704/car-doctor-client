@@ -26,6 +26,11 @@ const AuthProvideer = ({children}) => {
 
   //create this function with firebase for logout user
   const logout =()=>{
+    const cUser = user?.email;
+    axios.post("http://localhost:5000/logout",cUser,{withCredentials:true})
+    .then(res =>{
+      console.log("get response from logout user info: " , res.data)
+    })
     setLoading(true)
     return signOut(auth);
   }
@@ -35,6 +40,23 @@ const AuthProvideer = ({children}) => {
     const unsubscribe = onAuthStateChanged(auth, currentUser =>{
       setUser(currentUser);
       setUser(false);
+      const userEmail = currentUser?.email || user?.email;
+      const cUser = {email : userEmail}
+      if(currentUser){
+        
+        axios.post("http://localhost:5000/user",cUser,{withCredentials:true})
+        .then(res =>{
+          console.log("get response from user info: " , res.data)
+        })
+        console.log(cUser)
+        console.log(currentUser)
+      }
+      else{
+        // axios.post("http://localhost:5000/logout",cUser,{withCredentials:true})
+        // .then(res =>{
+        //   console.log("get response from logout user info: " , res.data)
+        // })
+      }
     })
     return ()=>{
       return unsubscribe();

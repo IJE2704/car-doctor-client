@@ -3,16 +3,27 @@ import Location from "../Component/Location";
 import { AuthContext } from "../Provider/AuthProvideer";
 import OrderCart from "./OrderCart";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const Orders = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   // console.log(user.email);
   useEffect(() => {
-    fetch(`http://localhost:5000/checkOut?customar_email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setOrders(data))
-      .catch((error) => console.log(error));
+    axios.get(`http://localhost:5000/checkOut?customar_email=${user.email}`,{
+      params:{
+        email:user.email
+      },
+      withCredentials:true
+    })
+    .then(res => {
+      // const data = res.json();
+      setOrders(res.data);
+    })
+    // fetch(`http://localhost:5000/checkOut?customar_email=${user.email}`,{credentials:'include'})
+    //   .then((res) => res.json())
+    //   .then((data) => setOrders(data))
+    //   .catch((error) => console.log(error));
   }, [user?.email]);
 
   // this function we create for delete the orders data
